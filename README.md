@@ -18,8 +18,11 @@ or use "(unnamed)", respectively.
 
 Currently, it is not possible to turn PNGs back into their component DMI files.
 
-
 ## Instructions
+
+You can either install PHP locally or use a pre-build Docker image with all the dependencies sorted out (if you do not wish to install PHP).
+
+### Using PHP
 
 You will need command-line access, an installation of php, and some libraries
 like php-gd.
@@ -33,26 +36,36 @@ directory. If a single file is given, it will just convert that single file.
 
 Example:
 
-* test.dmi
-  * human (4 directions)
-  * robot (animated)
+- test.dmi
+  - human (4 directions)
+  - robot (animated)
 
 After running, it will write the following folders and files:
 
-* test/
-  * human/
-    * human-dir1.png
-    * human-dir2.png
-    * etc.
-  * robot.png 
+- test/
+  - human/
+    - human-dir1.png
+    - human-dir2.png
+    - etc.
+  - robot.png
 
 The new folder will be in the same folder as the DMI was.
 
+### Using Docker
+
+Same as above, but you can use a pre-made container with PHP and php-gd preinstalled and ready to use, just mount your target path as a volume:
+
+```
+docker run -it --rm hamcha/dmi2png -v </path/to/dmi/files>:/in /in
+```
+
+You can also build the image yourself with the `Dockerfile` in this repo.
 
 ## Credits
-* Forked from https://github.com/liambaloh/DMI2PNG (GPL-3.0)
-* Animated PNG Creator, version 1.6.2 (LGPL)
-* PNGMetadataExtractor class, from MediaWiki
+
+- Forked from https://github.com/liambaloh/DMI2PNG (GPL-3.0)
+- Animated PNG Creator, version 1.6.2 (LGPL)
+- PNGMetadataExtractor class, from MediaWiki
 
 ## License
 
